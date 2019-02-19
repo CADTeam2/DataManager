@@ -2,6 +2,9 @@
 
 namespace App;
 
+use Attendance;
+use Event;
+use Question;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Session extends Model
@@ -33,16 +36,31 @@ class Session extends Model
         'deleted_at',
     ];
     
+    /**
+     * Gets the Event this model belongs to.
+     *
+     * @return Relationship
+     */
     public function event(){
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo('Event');
     }
     
+    /**
+     * Gets the Questions that are related to this model.
+     *
+     * @return Relationship
+     */
     public function questions(){
-        return $this->hasMany(Question::class);
+        return $this->hasMany('Question');
     }
-        
+    
+    /**
+     * Gets the Attendances that are related to this model.
+     *
+     * @return Relationship
+     */    
     public function attendances(){
-        return $this->hasMany(Attendance::class);
+        return $this->hasMany('Attendance');
     }
     
 }

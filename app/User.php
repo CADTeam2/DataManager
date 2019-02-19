@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Attendance;
+use Question;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -33,7 +35,21 @@ class User extends Authenticatable
         'deleted_at',
     ];
     
+    /**
+     * Gets the Attendances that are related to this model.
+     *
+     * @return Relationship
+     */
     public function attendances(){
-        return $this->hasMany(Attendance::class);
+        return $this->hasMany('Attendance');
+    }
+
+    /**
+     * Gets the Questions that are related to this model.
+     *
+     * @return Relationship
+     */
+    public function questions(){
+        return $this->hasMany('Question');
     }
 }

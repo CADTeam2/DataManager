@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Session;
+use User;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Attendance extends Model
@@ -28,12 +30,22 @@ class Attendance extends Model
         'deleted_at',
     ];
     
+    /**
+     * Gets the User this model belongs to.
+     *
+     * @return Relationship
+     */
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('User');
     }
     
+    /**
+     * Gets the Session this model belongs to.
+     *
+     * @return Relationship
+     */
     public function session(){
-        return $this->belongsTo(Session::class);
+        return $this->belongsTo('Session');
     }
 }
 
