@@ -14,16 +14,23 @@ class Session extends Model
      * @var array
      */
     protected $fillable = [
-        'eventID', 'startTime', 'endTime', 'acceptingQuestions', 'roomName', 'speaker',
+        'eventID',
+        'startTime',
+        'endTime',
+        'acceptingQuestions',
+        'roomName',
+        'speaker',
     ];
 
     /**
-     * The attributes that should be cast to native types.
+     * The attributes that should be mutated to dates.
      *
      * @var array
      */
-    protected $casts = [
-        'startTime' => 'datetime', 'endTime' => 'datetime',
+    protected $dates = [
+        'startTime',
+        'endTime',
+        'deleted_at',
     ];
     
     public function event(){

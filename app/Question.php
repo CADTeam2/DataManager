@@ -14,7 +14,18 @@ class Question extends Model
      * @var array
      */
     protected $fillable = [
-        'sessionID', 'question', 'priority',
+        'sessionID',
+        'question',
+        'priority',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at',
     ];
     
     public function session(){

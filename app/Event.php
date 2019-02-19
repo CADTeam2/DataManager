@@ -14,7 +14,20 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'street', 'city', 'postcode', 'contactNo', 'email',
+        'street',
+        'city',
+        'postcode',
+        'contactNo',
+        'email',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at',
     ];
     
     public function sessions(){

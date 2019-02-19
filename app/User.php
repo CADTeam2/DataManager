@@ -15,7 +15,22 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'title', 'firstName', 'lastName', 'contactNo', 'email',
+        'username',
+        'password',
+        'title',
+        'firstName',
+        'lastName',
+        'contactNo',
+        'email',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at',
     ];
     
     public function attendances(){

@@ -14,7 +14,18 @@ class Attendance extends Model
      * @var array
      */
     protected $fillable = [
-        'sessionID', 'userID', 'userType',
+        'sessionID',
+        'userID',
+        'userType',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at',
     ];
     
     public function user(){
