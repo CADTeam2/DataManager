@@ -1,5 +1,8 @@
 <?php
 
+use Question;
+use Session;
+use User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -14,14 +17,13 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
-    $sessionIDs = DB::table('Session')->pluck('sessionID')->get();
-    $userIDs = DB::table('User')->pluck('userID')->get();
+$factory->define(Question::class, function (Faker $faker) {
+	// Add more randomness to question length as variableNbWords only vairies by +/- 40%
+	$questionLength = $faker->numberBetween($min = 5, $max = 30);
     return [
-        //'questionID' => $faker->idNumber,
-        'sessionID' => $faker->randomElement($sessoinIDs),
-        'userID' => $faker->randomElement($userIDs),
-        'question' =>sentence($nbWords = 6, $variableNbWords = true),
+        'sessionID' => $faker->numberBetween($min = 1, $max = User::count()),
+        'userID' => $faker->numberBetween($min = 1, $max = User::count()),
+        'question' =>sentence($nbWords = $questionLength, $variableNbWords = true),
         'priority' => $faker->numberBetween($min = 0, $max = 4),
     ];
 });
