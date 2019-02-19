@@ -1,5 +1,7 @@
 <?php
 
+use Attendance;
+use Session;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
+    	echo("Creating sessions...");
+        factory(Session::class, 30)->create()->each(function ($session)) {
+        	$session->attendances()->save(factory(Attendance::class)->make());
+        }
+        echo("Sessions created succesfully!");
     }
 }

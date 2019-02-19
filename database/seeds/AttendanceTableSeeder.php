@@ -1,5 +1,6 @@
 <?php
 
+use Attendance;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
+        echo("Creating attendances...");
+        factory(Attendance::class, 250)->create();
+        echo("Attendances created succesfully!");
     }
 }

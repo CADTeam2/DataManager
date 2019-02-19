@@ -1,5 +1,6 @@
 <?php
 
+use Event;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,6 +12,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(UsersTableSeeder::class);
+    	echo("Creating events...");
+        factory(Event::class, 50)->create();
+        echo("Events created succesfully!");
     }
 }

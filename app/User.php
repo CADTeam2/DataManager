@@ -18,7 +18,7 @@ class User extends Authenticatable
         'username', 'password', 'title', 'firstName', 'lastName', 'contactNo', 'email',
     ];
     
-    public function attendance(){
+    public function attendances(){
         return $this->hasMany(Attendance::class);
     }
 }

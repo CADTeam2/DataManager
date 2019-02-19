@@ -17,7 +17,7 @@ class Event extends Model
         'street', 'city', 'postcode', 'contactNo', 'email',
     ];
     
-    public function session(){
+    public function sessions(){
         return $this->hasmany(Session::class);
     }
 }
