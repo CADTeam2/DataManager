@@ -16,12 +16,10 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        //'userID' => $faker->idNumber,
-        'username' => $faker->unique()->userName,
-        'password' => $faker->password,
-        'title' => $faker->title($gender = null|'male'|'female'),
-        'firstName' => $faker->firstName($gender = null|'male'|'female'),
-        'lastName' => $faker->lastName,
+        //'eventID' => $faker->idNumber,
+        'street' => $faker->streetName,
+        'city' => $faker->city,
+        'postcode' => $faker->postcode,
         'contactNo' => $faker->phonenumber,
         'email' => $faker->unique()->safeEmail,
     ];

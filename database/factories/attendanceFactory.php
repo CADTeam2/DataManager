@@ -15,14 +15,15 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $sessionIDs = DB::table('Session')->pluck('sessionID')->get();
+    $userIDs = DB::table('User')->pluck('userID')->get();
+    
+    $sessionID = $faker->randomElement($sessoinIDs);
+    $userID = $faker->randomElement($userIDs);
+    
     return [
-        //'userID' => $faker->idNumber,
-        'username' => $faker->unique()->userName,
-        'password' => $faker->password,
-        'title' => $faker->title($gender = null|'male'|'female'),
-        'firstName' => $faker->firstName($gender = null|'male'|'female'),
-        'lastName' => $faker->lastName,
-        'contactNo' => $faker->phonenumber,
-        'email' => $faker->unique()->safeEmail,
+        'sessionID' => $sessionID,
+        'userID' => $userID,
+        'userType' => $faker->numberBetween($min = 0, $max = 1),
     ];
 });

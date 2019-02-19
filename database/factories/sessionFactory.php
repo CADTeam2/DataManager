@@ -15,14 +15,14 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $eventIDs = DB::table('Event')->pluck('eventID')->get(); 
     return [
-        //'userID' => $faker->idNumber,
-        'username' => $faker->unique()->userName,
-        'password' => $faker->password,
-        'title' => $faker->title($gender = null|'male'|'female'),
-        'firstName' => $faker->firstName($gender = null|'male'|'female'),
-        'lastName' => $faker->lastName,
-        'contactNo' => $faker->phonenumber,
-        'email' => $faker->unique()->safeEmail,
+        //'sessionID' => $faker->idNumber,
+        'eventID' => $faker->randomElement($eventIDs),
+        'startTime' => $faker->time($format = 'H:i:s', $max = 'now'),
+        'endTime' => $faker->time($format = 'H:i:s', $max = 'now'),
+        'acceptingQuestions' => $faker->boolean,
+        'roomName' => $faker->numberBetween($min = 1, $max = 100),
+        'speaker' => $faker->firstName($gender = null|'male'|'female'),
     ];
 });
