@@ -17,6 +17,7 @@ class Question extends Model
      */
     protected $fillable = [
         'sessionID',
+        'userID',
         'question',
         'priority',
     ];
