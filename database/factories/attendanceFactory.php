@@ -1,5 +1,8 @@
 <?php
 
+use Addendance;
+use Session;
+use User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -14,7 +17,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(Attendance::class, function (Faker $faker) {
     $sessionIDs = DB::table('Session')->pluck('sessionID')->get();
     $userIDs = DB::table('User')->pluck('userID')->get();
     

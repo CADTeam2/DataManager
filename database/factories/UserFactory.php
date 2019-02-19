@@ -1,5 +1,6 @@
 <?php
 
+use User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -14,9 +15,8 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(User::class, function (Faker $faker) {
     return [
-        //'userID' => $faker->idNumber,
         'username' => $faker->unique()->userName,
         'password' => $faker->password,
         'title' => $faker->title($gender = null|'male'|'female'),

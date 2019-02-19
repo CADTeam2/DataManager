@@ -1,5 +1,6 @@
 <?php
 
+use Event;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -14,13 +15,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(Event::class, function (Faker $faker) {
     return [
-        //'eventID' => $faker->idNumber,
-        'street' => $faker->streetName,
+        'street' => $faker->streetAddress,
         'city' => $faker->city,
         'postcode' => $faker->postcode,
-        'contactNo' => $faker->phonenumber,
+        'contactNo' => $faker->phoneNumber,
         'email' => $faker->unique()->safeEmail,
     ];
 });

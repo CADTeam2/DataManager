@@ -1,5 +1,7 @@
 <?php
 
+use Event;
+use Session;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -14,11 +16,9 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
-    $eventIDs = DB::table('Event')->pluck('eventID')->get(); 
+$factory->define(Session::class, function (Faker $faker) {
     return [
-        //'sessionID' => $faker->idNumber,
-        'eventID' => $faker->randomElement($eventIDs),
+        'eventID' => $faker->numberBetween($min = 1, $max = Event::count()),
         'startTime' => $faker->time($format = 'H:i:s', $max = 'now'),
         'endTime' => $faker->time($format = 'H:i:s', $max = 'now'),
         'acceptingQuestions' => $faker->boolean,
