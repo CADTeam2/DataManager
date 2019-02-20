@@ -23,7 +23,7 @@ $factory->define(Session::class, function (Faker $faker) {
     $startingTime = $faker->optional($weight = 0.8)->dateTimeThisYear('+1 month');
     if ($startingTime) {
         $sessionLength = $faker->randomElement(['+1 hour', '+2 hours', '+3 hours']);
-        $endingTime = $faker->dateTimeBetween($startingTime, strtotime($sessionLength));
+        $endingTime = strtotime($sessionLength, $startingTime->getTimestamp());
     } else {
         $endingTime = null;
     }
