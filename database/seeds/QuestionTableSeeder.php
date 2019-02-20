@@ -12,8 +12,6 @@ class QuestionTableSeeder extends Seeder
      */
     public function run()
     {
-    	echo("Creating questions...");
         factory(Question::class, 1000)->create();
-        echo("Questions created succesfully!");
     }
 }

@@ -13,8 +13,6 @@ class SessionTableSeeder extends Seeder
      */
     public function run()
     {
-    	echo("Creating sessions...");
         factory(Session::class, 30)->create();
-        echo("Sessions created succesfully!");
     }
 }

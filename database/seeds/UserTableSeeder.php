@@ -12,8 +12,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-    	echo("Creating users...");
         factory(User::class, 50)->create();
-        echo("Users created succesfully!");
     }
 }

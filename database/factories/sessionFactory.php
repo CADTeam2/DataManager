@@ -32,7 +32,7 @@ $factory->define(Session::class, function (Faker $faker) {
     $userID = $faker->numberBetween($min = 1, $max = User::count());
     $speaker = User::where('userID', $userID)->first();
 
-    factory(Attendance::class)->create([
+    Attendance::create([
         'sessionID' => $sessionID,
         'userID'    => $userID,
         'userType'  => 1,

@@ -12,8 +12,6 @@ class EventTableSeeder extends Seeder
      */
     public function run()
     {
-    	echo("Creating events...");
         factory(Event::class, 50)->create();
-        echo("Events created succesfully!");
     }
 }
