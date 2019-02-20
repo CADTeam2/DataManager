@@ -29,12 +29,12 @@ $factory->define(Session::class, function (Faker $faker) {
     // We need to ensure that at least one speaker attends each session and so create a new
     // attendance with specific details here.
     $sessionID = Session::count()++;
-    $uid = $faker->numberBetween($min = 1, $max = User::count());
-    $speaker = User::where('userID', $uid)->first();
+    $userID = $faker->numberBetween($min = 1, $max = User::count());
+    $speaker = User::where('userID', $userID)->first();
 
     factory(Attendance::class)->create([
         'sessionID' => $sessionID,
-        'userID'    => $speaker->userID,
+        'userID'    => $userID,
         'userType'  => 1;
     ]);
 

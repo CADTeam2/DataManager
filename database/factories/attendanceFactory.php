@@ -18,15 +18,24 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Attendance::class, function (Faker $faker) {
-    $sessionIDs = DB::table('Session')->pluck('sessionID')->get();
-    $userIDs = DB::table('User')->pluck('userID')->get();
+	// Here we are ensuring that the composite key integrity is accounted for by only
+	// allowing session ID's for sessions not already attended by the random user.
+    $userID = $faker->numberBetween($min = 1, $max = User::count());
+    $existingAttendances = Attendance::where('userID', $userID)->get('sessionID');
+    $allSessions = range(1, Session::count());
+    $possibleSessions = array_diff($existingAttendances, $allSessions);
+    $sessionID = $faker->randomElement($possibleSessions);
+
     
-    $sessionID = $faker->randomElement($sessoinIDs);
-    $userID = $faker->randomElement($userIDs);
-    
+    // Ensure only 1 in 20 random attendances are as a moderator
+    $userType = $faker->numberBetween($min = 1, $max = 20);
+    if ($userType !== 1) {
+    	$userType = 0;
+    }
+
     return [
         'sessionID' => $sessionID,
-        'userID' => $userID,
-        'userType' => $faker->numberBetween($min = 0, $max = 1),
+        'userID' 	=> $userID,
+        'userType'  => $userType,
     ];
 });
