@@ -11,6 +11,13 @@ class Question extends Model
     use SoftDeletes;
 
     /**
+     * The table containing the Questions.
+     *
+     * @var string
+     */
+    protected $table = "Questions";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

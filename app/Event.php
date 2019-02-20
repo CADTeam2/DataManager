@@ -10,6 +10,13 @@ class Event extends Model
     use SoftDeletes;
 
     /**
+     * The table containing the Events.
+     *
+     * @var string
+     */
+    protected $table = "Events";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

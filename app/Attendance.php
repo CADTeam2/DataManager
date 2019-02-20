@@ -11,6 +11,13 @@ class Attendance extends Model
     use SoftDeletes;
 
     /**
+     * The table containing the Attendances.
+     *
+     * @var string
+     */
+    protected $table = "Attendances";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

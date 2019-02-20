@@ -12,6 +12,13 @@ class Session extends Model
     use SoftDeletes;
 
     /**
+     * The table containing the Sessions.
+     *
+     * @var string
+     */
+    protected $table = "Sessions";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

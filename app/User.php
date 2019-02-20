@@ -12,6 +12,13 @@ class User extends Authenticatable
     use SoftDeletes;
 
     /**
+     * The table containing the Users.
+     *
+     * @var string
+     */
+    protected $table = "Users";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
