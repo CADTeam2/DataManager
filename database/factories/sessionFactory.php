@@ -24,6 +24,8 @@ $factory->define(Session::class, function (Faker $faker) {
     if ($startingTime) {
         $sessionLength = $faker->randomElement(['+1 hour', '+2 hours', '+3 hours']);
         $endingTime = $faker->dateTimeBetween($startingTime, strtotime($sessionLength));
+    } else {
+        $endingTime = null;
     }
 
     // We need to ensure that at least one speaker attends each session and so create a new
@@ -36,7 +38,7 @@ $factory->define(Session::class, function (Faker $faker) {
         'eventID'            => $faker->numberBetween($min = 1, $max = Event::count()),
         'startTime'          => $startingTime,
         'endTime'            => $endingTime,
-        'acceptingQuestions' => $faker->boolean,
+        'acceptingQuestions' => $faker->boolean(80),
         'roomName'           => $faker->secondaryAddress,
         'speaker'            => $speaker->title." ".$speaker->firstName." ".$speaker->lastName,
     ];
