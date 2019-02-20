@@ -24,7 +24,7 @@ $factory->define(Question::class, function (Faker $faker) {
     return [
         'sessionID' => $faker->numberBetween($min = 1, $max = Session::count()),
         'userID' 	=> $faker->numberBetween($min = 1, $max = User::count()),
-        'question'  => sentence($nbWords = $questionLength, $variableNbWords = true),
+        'question'  => $faker->sentence($nbWords = $questionLength, $variableNbWords = true),
         'priority'  => $faker->numberBetween($min = 0, $max = 4),
     ];
 });

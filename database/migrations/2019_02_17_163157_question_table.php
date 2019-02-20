@@ -20,7 +20,7 @@ class QuestionTable extends Migration
             $table->increments('questionID');
             $table->unsignedInteger('sessionID');
             $table->unsignedInteger('userID');
-            $table->string('question');
+            $table->text('question');
             $table->integer('priority')->default($priorityDefault);
             $table->timestamps();
             $table->softDeletes();
