@@ -14,9 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
     	echo("Creating sessions...");
-        factory(Session::class, 30)->create()->each(function ($session)) {
-        	$session->attendances()->save(factory(Attendance::class)->make());
-        }
+        factory(Session::class, 30)->create();
         echo("Sessions created succesfully!");
     }
 }
