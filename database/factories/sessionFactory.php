@@ -32,12 +32,6 @@ $factory->define(Session::class, function (Faker $faker) {
     $userID = $faker->numberBetween($min = 1, $max = User::count());
     $speaker = User::where('userID', $userID)->first();
 
-    Attendance::create([
-        'sessionID' => $sessionID,
-        'userID'    => $userID,
-        'userType'  => 1,
-    ]);
-
     return [
         'eventID'            => $faker->numberBetween($min = 1, $max = Event::count()),
         'startTime'          => $startingTime,
@@ -46,4 +40,10 @@ $factory->define(Session::class, function (Faker $faker) {
         'roomName'           => $faker->secondaryAddress,
         'speaker'            => $speaker->title." ".$speaker->firstName." ".$speaker->lastName,
     ];
+
+    Attendance::create([
+        'sessionID' => $sessionID,
+        'userID'    => $userID,
+        'userType'  => 1,
+    ]);
 });
