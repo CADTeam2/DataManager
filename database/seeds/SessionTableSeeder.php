@@ -1,6 +1,5 @@
 <?php
 
-use App\Attendance;
 use App\Session;
 use Illuminate\Database\Seeder;
 
