@@ -21,7 +21,7 @@ class UserTable extends Migration
             $table->string('title');
             $table->string('firstName');
             $table->string('lastName');
-            $table->integer('contactNo')->unique()->nullable();
+            $table->string('contactNo')->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamps();
             $table->softDeletes();

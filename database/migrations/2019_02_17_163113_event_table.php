@@ -19,7 +19,7 @@ class EventTable extends Migration
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('postcode')->nullable();
-            $table->integer('contactNo')->unique()->nullable();
+            $table->string('contactNo')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();
