@@ -21,7 +21,7 @@ use Faker\Generator as Faker;
 $factory->define(Session::class, function (Faker $faker) {
     // Ensuring that the ending dates are always a reasonable time after the starting dates.
     $startingTime = $faker->optional($weight = 0.8)->dateTimeThisYear('+1 month');
-    if ($startTime) {
+    if ($startingTime) {
         $sessionLength = $faker->randomElement(['+1 hour', '+2 hours', '+3 hours']);
         $endingTime = $faker->dateTimeBetween($startingTime, strtotime($sessionLength));
     }
