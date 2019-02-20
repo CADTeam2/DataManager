@@ -5,6 +5,7 @@ namespace App;
 use Attendance;
 use Event;
 use Question;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Session extends Model
