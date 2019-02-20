@@ -4,7 +4,7 @@ use Attendance;
 use Session;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class SessionTableSeeder extends Seeder
 {
     /**
      * Seed the application's database.

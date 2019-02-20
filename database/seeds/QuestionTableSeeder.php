@@ -3,7 +3,7 @@
 use Question;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class QuestionTableSeeder extends Seeder
 {
     /**
      * Seed the application's database.
