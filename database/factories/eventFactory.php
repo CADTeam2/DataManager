@@ -17,10 +17,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Event::class, function (Faker $faker) {
     return [
-        'street' => $faker->streetAddress,
-        'city' => $faker->city,
-        'postcode' => $faker->postcode,
-        'contactNo' => $faker->phoneNumber,
-        'email' => $faker->unique()->safeEmail,
+        'street' => $faker->optional($weight = 0.8)->streetAddress,
+        'city' => $faker->optional($weight = 0.9)->city,
+        'postcode' => $faker->optional($weight = 0.7)->postcode,
+        'contactNo' => $faker->optional($weight = 0.4)->phoneNumber,
+        'email' => $faker->numberBetween($min = 0, $max = 3) === 0 ? null : $faker->unique()->safeEmail,
     ];
 });
