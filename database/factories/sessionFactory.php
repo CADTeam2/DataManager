@@ -1,9 +1,9 @@
 <?php
 
-use Attendance;
-use Event;
-use Session;
-use User;
+use App\Attendance;
+use App\Event;
+use App\Session;
+use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

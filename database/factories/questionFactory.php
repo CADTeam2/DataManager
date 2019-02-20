@@ -1,8 +1,8 @@
 <?php
 
-use Question;
-use Session;
-use User;
+use App\Question;
+use App\Session;
+use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 

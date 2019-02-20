@@ -1,7 +1,7 @@
 <?php
 
-use Attendance;
-use Session;
+use App\Attendance;
+use App\Session;
 use Illuminate\Database\Seeder;
 
 class SessionTableSeeder extends Seeder

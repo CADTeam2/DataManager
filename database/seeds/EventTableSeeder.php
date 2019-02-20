@@ -1,6 +1,6 @@
 <?php
 
-use Event;
+use App\Event;
 use Illuminate\Database\Seeder;
 
 class EventTableSeeder extends Seeder
