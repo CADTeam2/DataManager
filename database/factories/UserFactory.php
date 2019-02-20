@@ -16,13 +16,15 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    // Faker only supports traditional genders.
+    $gender = $faker->randomElement(['male', 'female']);
     return [
         'username' => $faker->unique()->userName,
         'password' => $faker->password,
-        'title' => $faker->title($gender = null|'male'|'female'),
-        'firstName' => $faker->firstName($gender = null|'male'|'female'),
+        'title' => $faker->title($gender),
+        'firstName' => $faker->firstName($gender),
         'lastName' => $faker->lastName,
-        'contactNo' => $faker->phonenumber,
+        'contactNo' => $faker->optional($weight = 0.8)->phoneNumber,
         'email' => $faker->unique()->safeEmail,
     ];
 });
