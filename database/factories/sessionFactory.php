@@ -35,7 +35,7 @@ $factory->define(Session::class, function (Faker $faker) {
     factory(Attendance::class)->create([
         'sessionID' => $sessionID,
         'userID'    => $userID,
-        'userType'  => 1;
+        'userType'  => 1,
     ]);
 
     return [
