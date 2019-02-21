@@ -14,12 +14,12 @@ class EventTable extends Migration
     public function up()
     {
         // Creates the 'Event' table with the correct columns and settings.
-        Schema::create('Event', function (Blueprint $table) {
+        Schema::create('Events', function (Blueprint $table) {
             $table->increments('eventID');
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('postcode')->nullable();
-            $table->integer('contactNo')->unique()->nullable();
+            $table->string('contactNo')->unique()->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();

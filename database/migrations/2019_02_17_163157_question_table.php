@@ -14,19 +14,19 @@ class QuestionTable extends Migration
     public function up()
     {
         // Creates the 'Question' table with the correct columns and settings.
-        Schema::create('Question', function (Blueprint $table) {
+        Schema::create('Questions', function (Blueprint $table) {
             $priorityDefault = 0;
 
             $table->increments('questionID');
             $table->unsignedInteger('sessionID');
             $table->unsignedInteger('userID');
-            $table->string('question');
+            $table->text('question');
             $table->integer('priority')->default($priorityDefault);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('sessionID')->references('sessionID')->on('Session')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('userID')->references('userID')->on('User')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('sessionID')->references('sessionID')->on('Sessions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('userID')->references('userID')->on('Users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

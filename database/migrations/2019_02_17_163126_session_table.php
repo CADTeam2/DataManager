@@ -14,7 +14,7 @@ class SessionTable extends Migration
     public function up()
     {
         // Creates the 'Session' table with the correct columns and settings.
-        Schema::create('Session', function (Blueprint $table) {
+        Schema::create('Sessions', function (Blueprint $table) {
             $table->increments('sessionID');
             $table->unsignedInteger('eventID');
             $table->dateTimeTz('startTime')->nullable();
@@ -25,7 +25,7 @@ class SessionTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('eventID')->references('eventID')->on('Event')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('eventID')->references('eventID')->on('Events')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

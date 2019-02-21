@@ -14,7 +14,7 @@ class AttendanceTable extends Migration
     public function up()
     {
         // Creates the 'Attendance' table with the correct columns and settings.
-        Schema::create('Attendance', function (Blueprint $table) {
+        Schema::create('Attendances', function (Blueprint $table) {
             $table->unsignedInteger('sessionID');
             $table->unsignedInteger('userID');
             $table->integer('userType');
@@ -22,8 +22,8 @@ class AttendanceTable extends Migration
             $table->softDeletes();
 
             $table->primary(['sessionID', 'userID']);
-            $table->foreign('sessionID')->references('sessionID')->on('Session')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('userID')->references('userID')->on('User')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('sessionID')->references('sessionID')->on('Sessions')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('userID')->references('userID')->on('Users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

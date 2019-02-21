@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Attendance;
+use Question;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -10,15 +12,51 @@ class User extends Authenticatable
     use SoftDeletes;
 
     /**
+     * The table containing the Users.
+     *
+     * @var string
+     */
+    protected $table = "Users";
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username', 'password', 'title', 'firstName', 'lastName', 'contactNo', 'email',
+        'username',
+        'password',
+        'title',
+        'firstName',
+        'lastName',
+        'contactNo',
+        'email',
+    ];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'deleted_at',
     ];
     
-    public function attendance(){
-        return $this->hasMany(Attendance::class);
+    /**
+     * Gets the Attendances that are related to this model.
+     *
+     * @return Relationship
+     */
+    public function attendances(){
+        return $this->hasMany('Attendance');
+    }
+
+    /**
+     * Gets the Questions that are related to this model.
+     *
+     * @return Relationship
+     */
+    public function questions(){
+        return $this->hasMany('Question');
     }
 }
