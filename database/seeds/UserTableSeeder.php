@@ -12,6 +12,9 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+    	// Note that due to the way SessionTableSeeder is set up,
+    	// there must be more users than sessions for the seeder to
+    	// avoid database integrity constraints.
         factory(User::class, 200)->create();
     }
 }

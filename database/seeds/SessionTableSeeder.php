@@ -1,5 +1,6 @@
 <?php
 
+use App\Attendance;
 use App\Session;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,16 @@ class SessionTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Session::class, 50)->create();
+        factory(Session::class, 50)->create()->each(function ($session) {
+        	factory(Attendance::class)->create([
+        		// As this runs before the attendance seeder, we can be certain that
+        		// this won't cause integrity constraints. This will simply create
+        		// cross references where user 1 moderates session 1, user 2 moderates
+        		// session 2 etc.
+        		'sessionID' => Attendance::count() + 1,
+        		'userID'    => Attendance::count() + 1,
+        		'userType'  => 1,
+    		]);
+        });
     }
 }

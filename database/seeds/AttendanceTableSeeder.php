@@ -12,11 +12,11 @@ class AttendanceTableSeeder extends Seeder
      */
     public function run()
     {
-    	// Because composite keys and laravel don't play nice,
-    	// we deal with the integrity constraint here with a try
-    	// catch on constraint failure.
         $attendances = factory(Attendance::class, 1000)->make();
 
+        // Because composite keys and laravel don't play nice,
+        // we deal with the integrity constraint here with a try
+        // catch on constraint failure.
         foreach ($attendances as $attendance) {
         	repeat:
             try {

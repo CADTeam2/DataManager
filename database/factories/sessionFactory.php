@@ -31,7 +31,9 @@ $factory->define(Session::class, function (Faker $faker) {
     // We need to ensure that at least one speaker attends each session and so create a new
     // attendance with specific details here.
     $sessionID = Session::count() + 1;
-    $userID = $faker->numberBetween($min = 1, $max = User::count());
+    // Also generating the userID as session count is a messy shortcut go allow for the foreign
+    // key constraints to always be fulfilled, fine for basic dummy data.
+    $userID = Session::count() + 1;
     $speaker = User::where('userID', $userID)->first();
 
     return [
@@ -42,10 +44,4 @@ $factory->define(Session::class, function (Faker $faker) {
         'roomName'           => $faker->secondaryAddress,
         'speaker'            => $speaker->title." ".$speaker->firstName." ".$speaker->lastName,
     ];
-
-    Attendance::create([
-        'sessionID' => $sessionID,
-        'userID'    => $userID,
-        'userType'  => 1,
-    ]);
 });
