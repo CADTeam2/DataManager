@@ -28,13 +28,10 @@ $factory->define(Session::class, function (Faker $faker) {
         $endingTime = null;
     }
 
-    // We need to ensure that at least one speaker attends each session and so create a new
-    // attendance with specific details here.
-    $sessionID = Session::count() + 1;
-    // Also generating the userID as session count is a messy shortcut go allow for the foreign
-    // key constraints to always be fulfilled, fine for basic dummy data.
-    $userID = Session::count() + 1;
-    $speaker = User::where('userID', $userID)->first();
+    // This will set the speaker for the first session to the 1st user, 2nd to the 2nd etc.
+    // This keeps the data consistent with the moderators assigned in the SessionTableSeeder.
+    static $userID = 1;
+    $speaker = User::where('userID', $userID++)->first();
 
     return [
         'eventID'            => $faker->numberBetween($min = 1, $max = Event::count()),
