@@ -18,6 +18,13 @@ class Event extends Model
     protected $table = "events";
 
     /**
+     * The primary key for the Event model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'eventID';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
