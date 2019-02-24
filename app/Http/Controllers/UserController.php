@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function showUser($userID)
     {
-        return response()->json(User::find($userID));
+        return response()->json(User::findOrFail($userID));
     }
 
     public function create(Request $request)

@@ -16,7 +16,7 @@ class Question extends Model
      *
      * @var string
      */
-    protected $table = "questions";
+    protected $table = 'questions';
 
     /**
      * The primary key for the Question model.

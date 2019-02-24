@@ -14,7 +14,7 @@ class AttendanceController extends Controller
 
     public function showAttendance($sessionID, $userID)
     {
-        return response()->json(Attendance::find($sessionID, $userID));
+        return response()->json(Attendance::where([['sessionID', '=', $sessionID], ['userID', '=', $userID]])->firstOrFail());
     }
 
     public function create(Request $request)
@@ -26,7 +26,7 @@ class AttendanceController extends Controller
 
     public function update($sessionID, $userID, Request $request)
     {
-        $attendance = Attendance::findOrFail($sessionID, $userID);
+        $attendance = Attendance::where([['sessionID', '=', $sessionID], ['userID', '=', $userID]])->firstOrFail();
         $attendance->update($request->all());
 
         return response()->json($event, 200);
@@ -34,7 +34,7 @@ class AttendanceController extends Controller
 
     public function delete($sessionID, $userID)
     {
-        Attendance::findOrFail($sessionID, $userID)->delete();
+        Attendance::where([['sessionID', '=', $sessionID], ['userID', '=', $userID]])->firstOrFail()->delete();
         return response('Attendance Deleted Successfully', 200);
     }
 }

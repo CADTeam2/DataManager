@@ -14,7 +14,7 @@ class EventController extends Controller
 
     public function showEvent($eventID)
     {
-        return response()->json(Event::find($eventID));
+        return response()->json(Event::findOrFail($eventID));
     }
 
     public function create(Request $request)

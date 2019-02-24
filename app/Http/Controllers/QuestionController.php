@@ -14,7 +14,7 @@ class QuestionController extends Controller
 
     public function showQuestion($questionID)
     {
-        return response()->json(Question::find($questionID));
+        return response()->json(Question::findOrFail($questionID));
     }
 
     public function create(Request $request)

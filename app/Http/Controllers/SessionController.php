@@ -14,7 +14,7 @@ class SessionController extends Controller
 
     public function showSession($sessionID)
     {
-        return response()->json(Session::find($sessionID));
+        return response()->json(Session::findOrFail($sessionID));
     }
 
     public function create(Request $request)
