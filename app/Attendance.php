@@ -55,5 +55,19 @@ class Attendance extends Model
     public function session(){
         return $this->belongsTo('Session');
     }
+
+    /**
+     * Lets Eloquent know we are using a composite key.
+     *
+     * @return keys
+     */
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        $query
+            ->where('SessionID', '=', $this->getAttribute('SessionID'))
+            ->where('UserID', '=', $this->getAttribute('UserID'));
+
+        return $query;
+    }
 }
 
