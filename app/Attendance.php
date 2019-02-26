@@ -4,6 +4,7 @@ namespace App;
 
 use Session;
 use User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -16,7 +17,7 @@ class Attendance extends Model
      *
      * @var string
      */
-    protected $table = "attendances";
+    protected $table = 'attendances';
 
     /**
      * The attributes that are mass assignable.
@@ -39,6 +40,27 @@ class Attendance extends Model
     ];
     
     /**
+     * Tell Eloquent that we are not using the default incrementing primary key.
+     *
+     * @var string
+     */
+    public $incrementing = false;
+
+    /**
+     * Lets Eloquent know we are using a composite key.
+     *
+     * @return keys
+     */
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        $query
+            ->where('SessionID', '=', $this->getAttribute('SessionID'))
+            ->where('UserID', '=', $this->getAttribute('UserID'));
+
+        return $query;
+    }
+    
+    /**
      * Gets the User this model belongs to.
      *
      * @return Relationship
@@ -56,4 +78,3 @@ class Attendance extends Model
         return $this->belongsTo('Session');
     }
 }
-

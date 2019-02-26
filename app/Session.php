@@ -17,7 +17,14 @@ class Session extends Model
      *
      * @var string
      */
-    protected $table = "sessions";
+    protected $table = 'sessions';
+
+    /**
+     * The primary key for the Session model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'sessionID';
 
     /**
      * The attributes that are mass assignable.
