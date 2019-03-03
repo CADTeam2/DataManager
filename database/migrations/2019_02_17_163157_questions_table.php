@@ -15,13 +15,11 @@ class questionsTable extends Migration
     {
         // Creates the 'questions' table with the correct columns and settings.
         Schema::create('questions', function (Blueprint $table) {
-            $priorityDefault = 0;
-
             $table->increments('questionID');
             $table->unsignedInteger('sessionID');
             $table->unsignedInteger('userID');
             $table->text('question');
-            $table->integer('priority')->default($priorityDefault);
+            $table->integer('priority')->default(0);
             $table->timestamps();
             $table->softDeletes();
 
