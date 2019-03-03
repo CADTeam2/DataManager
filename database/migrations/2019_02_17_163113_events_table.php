@@ -16,17 +16,17 @@ class eventsTable extends Migration
         // Creates the 'events' table with the correct columns and settings.
         Schema::create('events', function (Blueprint $table) {
             $table->increments('eventID');
-            $table->string('password');
-            $table->string('accountName')->unique();
+            $table->unsignedInteger('userID');
             $table->string('eventName');
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('postcode')->nullable();
-            $table->string('contactNo')->unique()->nullable();
-            $table->string('email')->unique();
-            $table->boolean('hideDetails')->default(1);
+            $table->string('contactNo')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('userID')->references('userID')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
