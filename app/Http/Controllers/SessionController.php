@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Session;
 use Illuminate\Http\Request;
+use Laravel\Lumen\Routing\Controller;
 
 class SessionController extends Controller
 {

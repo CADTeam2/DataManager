@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
+use Laravel\Lumen\Routing\Controller;
 
 class QuestionController extends Controller
 {

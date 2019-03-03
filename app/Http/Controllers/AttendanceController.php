@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use Illuminate\Http\Request;
+use Laravel\Lumen\Routing\Controller;
 
 class AttendanceController extends Controller
 {
@@ -19,6 +20,12 @@ class AttendanceController extends Controller
 
     public function create(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'location' => 'required|alpha'
+        ]);
+
         $attendance = Attendance::create($request->all());
 
         return response()->json($attendance, 201);
