@@ -17,6 +17,7 @@ class eventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('eventID');
             $table->string('password');
+            $table->string('accountName')->unique();
             $table->string('eventName');
             $table->string('street')->nullable();
             $table->string('city')->nullable();
