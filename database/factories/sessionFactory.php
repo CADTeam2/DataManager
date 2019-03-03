@@ -35,6 +35,7 @@ $factory->define(Session::class, function (Faker $faker) {
 
     return [
         'eventID'            => $faker->numberBetween($min = 1, $max = Event::count()),
+        'sessionName'        => $faker->sentence,
         'startTime'          => $startTime,
         'endTime'            => $endTime,
         'acceptingQuestions' => $faker->boolean(80),
