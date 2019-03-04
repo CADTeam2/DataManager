@@ -33,6 +33,7 @@ class Session extends Model
      */
     protected $fillable = [
         'eventID',
+        'sessionName',
         'startTime',
         'endTime',
         'acceptingQuestions',

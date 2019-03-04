@@ -3,6 +3,7 @@
 namespace App;
 
 use Attendance;
+use Event;
 use Question;
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
@@ -45,6 +46,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+    ];
+
+    /**
      * The attributes that should be mutated to dates.
      *
      * @var array
@@ -52,6 +62,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $dates = [
         'deleted_at',
     ];
+
+    /**
+     * Gets the Events that are related to this model.
+     *
+     * @return Relationship
+     */
+    public function events(){
+        return $this->hasMany('Event');
+    }
     
     /**
      * Gets the Attendances that are related to this model.
