@@ -6,8 +6,9 @@ use App\Attendance;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
+
 class AttendanceController extends Controller
-{
+{ 
     public function showAllAttendances()
     {
         return response()->json(Attendance::all());
@@ -21,9 +22,9 @@ class AttendanceController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'location' => 'required|alpha'
+            'sessionID' => 'required|integer|exists:sessions,sessionID',
+            'userID'    => 'required|integer|exists:users,userID',
+            'userType'  => 'required|integer',
         ]);
 
         $attendance = Attendance::create($request->all());
@@ -33,10 +34,14 @@ class AttendanceController extends Controller
 
     public function update($sessionID, $userID, Request $request)
     {
+        $this->validate($request, [
+            'userType' => 'required|integer',
+        ]);
+
         $attendance = Attendance::where([['sessionID', '=', $sessionID], ['userID', '=', $userID]])->firstOrFail();
         $attendance->update($request->all());
 
-        return response()->json($event, 200);
+        return response()->json($attendance, 200);
     }
 
     public function delete($sessionID, $userID)

@@ -8,34 +8,53 @@ use Laravel\Lumen\Routing\Controller;
 
 class EventController extends Controller
 {
-    public function showAllEvents()
-    {
-        return response()->json(Event::all());
-    }
+	public function showAllEvents()
+	{
+		return response()->json(Event::all());
+	}
 
-    public function showEvent($eventID)
-    {
-        return response()->json(Event::findOrFail($eventID));
-    }
+	public function showEvent($eventID)
+	{
+		return response()->json(Event::findOrFail($eventID));
+	}
 
-    public function create(Request $request)
-    {
-        $event = Event::create($request->all());
+	public function create(Request $request)
+	{
+		$this->validate($request, [
+			'userID'	=> 'required|integer|exists:users,userID',
+			'eventName' => 'required|string|max:255',
+			'street'    => 'nullable|string|max:255',
+			'city'      => 'nullable|string|max:255',
+			'postcode'  => 'nullable|string|max:255',
+			'contactNo' => 'nullable|string|max:255',
+			'email'     => 'nullable|string|email|max:255',
+		]);
 
-        return response()->json($event, 201);
-    }
+		$event = Event::create($request->all());
 
-    public function update($eventID, Request $request)
-    {
-        $event = Event::findOrFail($eventID);
-        $event->update($request->all());
+		return response()->json($event, 201);
+	}
 
-        return response()->json($event, 200);
-    }
+	public function update($eventID, Request $request)
+	{
+		$this->validate($request, [
+			'eventName' => 'string|max:255',
+			'street'    => 'nullable|string|max:255',
+			'city'      => 'nullable|string|max:255',
+			'postcode'  => 'nullable|string|max:255',
+			'contactNo' => 'nullable|string|max:255',
+			'email'     => 'nullable|string|email|max:255',
+		]);
 
-    public function delete($eventID)
-    {
-        Event::findOrFail($eventID)->delete();
-        return response('Event Deleted Successfully', 200);
-    }
+		$event = Event::findOrFail($eventID);
+		$event->update($request->all());
+
+		return response()->json($event, 200);
+	}
+
+	public function delete($eventID)
+	{
+		Event::findOrFail($eventID)->delete();
+		return response('Event Deleted Successfully', 200);
+	}
 }
