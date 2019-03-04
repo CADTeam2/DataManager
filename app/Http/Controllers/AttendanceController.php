@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
 class AttendanceController extends Controller
-{ 
+{
     public function showAllAttendances()
     {
         return response()->json(Attendance::all());
