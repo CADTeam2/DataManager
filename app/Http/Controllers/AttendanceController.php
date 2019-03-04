@@ -6,7 +6,6 @@ use App\Attendance;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
-
 class AttendanceController extends Controller
 { 
     public function showAllAttendances()

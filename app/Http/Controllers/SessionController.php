@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
 class SessionController extends Controller
-{  
+{
     public function showAllSessions()
     {
         return response()->json(Session::all());

@@ -8,7 +8,7 @@ use Laravel\Lumen\Routing\Controller;
 
 class QuestionController extends Controller
 {
-   public function showAllQuestions()
+    public function showAllQuestions()
     {
         return response()->json(Question::all());
     }
