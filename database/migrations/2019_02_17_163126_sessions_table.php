@@ -17,11 +17,12 @@ class sessionsTable extends Migration
         Schema::create('sessions', function (Blueprint $table) {
             $table->increments('sessionID');
             $table->unsignedInteger('eventID');
-            $table->dateTimeTz('startTime')->nullable();
-            $table->dateTimeTz('endTime')->nullable();
-            $table->boolean('acceptingQuestions');
+            $table->string('sessionName');
+            $table->dateTime('startTime')->nullable();
+            $table->dateTime('endTime')->nullable();
+            $table->boolean('acceptingQuestions')->default(1);
             $table->string('roomName')->nullable();
-            $table->string('speaker');
+            $table->string('speaker')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

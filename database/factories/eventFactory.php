@@ -1,6 +1,7 @@
 <?php
 
 use App\Event;
+use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -17,10 +18,12 @@ use Faker\Generator as Faker;
 
 $factory->define(Event::class, function (Faker $faker) {
     return [
+    	'userID' 	=> $faker->numberBetween($min = 1, $max = User::count()),
+    	'eventName' => $faker->sentence,
         'street'    => $faker->optional($weight = 0.8)->streetAddress,
         'city' 		=> $faker->optional($weight = 0.9)->city,
         'postcode'  => $faker->optional($weight = 0.7)->postcode,
         'contactNo' => $faker->optional($weight = 0.4)->phoneNumber,
-        'email' 	=> $faker->numberBetween($min = 0, $max = 3) === 0 ? null : $faker->unique()->safeEmail,
+        'email' 	=> $faker->optional($weight = 0.8)->safeEmail,
     ];
 });
