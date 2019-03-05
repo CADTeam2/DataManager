@@ -16,7 +16,8 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group([
-    'prefix' => 'api',
+    'prefix'     => 'api',
+    //'middleware' => 'auth',
 ], function() use ($router) {
 
 	// User API Routes:
