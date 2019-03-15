@@ -36,6 +36,9 @@ $router->group([
     $router->put('users/{userID}', [
     	'uses' => 'UserController@update',
     ]);
+    $router->get('users/session/{sessionID}', [
+        'uses' => 'UserController@showUsersBySession',
+    ]);
 
     // Event API Routes:
     $router->get('events', [
@@ -52,6 +55,9 @@ $router->group([
     ]);
     $router->put('events/{eventID}', [
     	'uses' => 'EventController@update',
+    ]);
+    $router->get('events/user/{userID}', [
+        'uses' => 'EventController@showEventsByUser',
     ]);
 
     // Session API Routes:
@@ -70,6 +76,12 @@ $router->group([
     $router->put('sessions/{sessionID}', [
     	'uses' => 'SessionController@update',
     ]);
+    $router->get('sessions/user/{userID}', [
+        'uses' => 'SessionController@showSessionsByUser',
+    ]);
+    $router->get('sessions/event/{eventID}', [
+        'uses' => 'SessionController@showSessionsByEvent',
+    ]);
 
     // Questions API Routes:
     $router->get('questions', [
@@ -87,6 +99,12 @@ $router->group([
     $router->put('questions/{questionID}', [
     	'uses' => 'QuestionController@update',
     ]);
+    $router->get('questions/session/{sessionID}', [
+        'uses' => 'QuestionController@showQuestionsBySession',
+    ]);
+    $router->get('questions/user/{userID}', [
+        'uses' => 'QuestionController@showQuestionsByUser',
+    ]);
 
     // Attendance API Routes:
     $router->get('attendances', [
@@ -103,5 +121,11 @@ $router->group([
     ]);
     $router->put('attendances/{sessionID}/{userID}', [
     	'uses' => 'AttendanceController@update',
+    ]);
+    $router->get('attendances/session/{sessionID}', [
+        'uses' => 'AttendanceController@showAttendancesBySession',
+    ]);
+    $router->get('attendances/user/{userID}', [
+        'uses' => 'AttendanceController@showAttendancesByUser',
     ]);
 });
