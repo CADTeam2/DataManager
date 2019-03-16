@@ -13,7 +13,7 @@ class QuestionController extends Controller
         return response()->json(Question::all());
     }
 
-    public function showQuestion($questionID)
+    public function showQuestion(int $questionID)
     {
         return response()->json(Question::findOrFail($questionID));
     }
@@ -32,7 +32,7 @@ class QuestionController extends Controller
         return response()->json($question, 201);
     }
 
-    public function update($questionID, Request $request)
+    public function update(int $questionID, Request $request)
     {
         $this->validate($request, [
             'question' => 'string',
@@ -45,9 +45,19 @@ class QuestionController extends Controller
         return response()->json($question, 200);
     }
 
-    public function delete($questionID)
+    public function delete(int $questionID)
     {
         Question::findOrFail($questionID)->delete();
         return response('Question Deleted Successfully', 200);
+    }
+
+    public function showQuestionsBySession(int $sessionID)
+    {
+        return response()->json(Question::where('sessionID', $sessionID)->get());
+    }
+
+    public function showQuestionsByUser(int $userID)
+    {
+        return response()->json(Question::where('userID', $userID)->get());
     }
 }

@@ -24,6 +24,9 @@ $router->group([
     $router->get('users', [
         'uses' => 'UserController@showAllUsers',
     ]);
+    $router->get('users/session/{sessionID}', [
+        'uses' => 'UserController@showUsersBySession',
+    ]);
     $router->get('users/{userID}', [
         'uses' => 'UserController@showUser',
     ]);
@@ -40,6 +43,9 @@ $router->group([
     // Event API Routes:
     $router->get('events', [
         'uses' => 'EventController@showAllEvents',
+    ]);
+    $router->get('events/user/{userID}', [
+        'uses' => 'EventController@showEventsByUser',
     ]);
     $router->get('events/{eventID}', [
         'uses' => 'EventController@showEvent',
@@ -58,6 +64,12 @@ $router->group([
     $router->get('sessions', [
         'uses' => 'SessionController@showAllSessions',
     ]);
+    $router->get('sessions/user/{userID}', [
+        'uses' => 'SessionController@showSessionsByUser',
+    ]);
+    $router->get('sessions/event/{eventID}', [
+        'uses' => 'SessionController@showSessionsByEvent',
+    ]);
     $router->get('sessions/{sessionID}', [
         'uses' => 'SessionController@showSession',
     ]);
@@ -75,6 +87,12 @@ $router->group([
     $router->get('questions', [
         'uses' => 'QuestionController@showAllQuestions',
     ]);
+    $router->get('questions/session/{sessionID}', [
+        'uses' => 'QuestionController@showQuestionsBySession',
+    ]);
+    $router->get('questions/user/{userID}', [
+        'uses' => 'QuestionController@showQuestionsByUser',
+    ]);
     $router->get('questions/{questionID}', [
         'uses' => 'QuestionController@showQuestion',
     ]);
@@ -91,6 +109,12 @@ $router->group([
     // Attendance API Routes:
     $router->get('attendances', [
         'uses' => 'AttendanceController@showAllAttendances',
+    ]);
+    $router->get('attendances/session/{sessionID}', [
+        'uses' => 'AttendanceController@showAttendancesBySession',
+    ]);
+    $router->get('attendances/user/{userID}', [
+        'uses' => 'AttendanceController@showAttendancesByUser',
     ]);
     $router->get('attendances/{sessionID}/{userID}', [
         'uses' => 'AttendanceController@showAttendance',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attendance;
 use App\User;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
@@ -13,7 +14,7 @@ class UserController extends Controller
         return response()->json(User::all());
     }
 
-    public function showUser($userID)
+    public function showUser(int $userID)
     {
         return response()->json(User::findOrFail($userID));
     }
@@ -35,7 +36,7 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
-    public function update($userID, Request $request)
+    public function update(int $userID, Request $request)
     {
         $this->validate($request, [
             'username'  => 'string|max:255|unique:users,username',
@@ -53,9 +54,16 @@ class UserController extends Controller
         return response()->json($user, 200);
     }
 
-    public function delete($userID)
+    public function delete(int $userID)
     {
         User::findOrFail($userID)->delete();
         return response('User Deleted Successfully', 200);
+    }
+
+    public function showUsersBySession(int $sessionID)
+    {
+        $attendances = Attendance::where('sessionID', $sessionID)->get();
+
+        return response()->json(User::wherein('userID', $attendances->pluck('userID'))->get());
     }
 }

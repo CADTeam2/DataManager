@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Attendance;
 use App\Session;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
@@ -13,7 +14,7 @@ class SessionController extends Controller
         return response()->json(Session::all());
     }
 
-    public function showSession($sessionID)
+    public function showSession(int $sessionID)
     {
         return response()->json(Session::findOrFail($sessionID));
     }
@@ -35,7 +36,7 @@ class SessionController extends Controller
         return response()->json($session, 201);
     }
 
-    public function update($sessionID, Request $request)
+    public function update(int $sessionID, Request $request)
     {
         $this->validate($request, [
             'sessionName'        => 'string|max:255',
@@ -52,9 +53,21 @@ class SessionController extends Controller
         return response()->json($session, 200);
     }
 
-    public function delete($sessionID)
+    public function delete(int $sessionID)
     {
         Session::findOrFail($sessionID)->delete();
         return response('Session Deleted Successfully', 200);
+    }
+
+    public function showSessionsByUser(int $userID)
+    {
+        $attendances = Attendance::where('userID', $userID)->get();
+
+        return response()->json(Session::wherein('sessionID', $attendances->pluck('sessionID'))->get());
+    }
+
+    public function showSessionsByEvent(int $eventID)
+    {
+        return response()->json(Session::where('eventID', $eventID)->get());
     }
 }
