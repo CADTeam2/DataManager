@@ -13,7 +13,7 @@ class AttendanceController extends Controller
         return response()->json(Attendance::all());
     }
 
-    public function showAttendance($sessionID, $userID)
+    public function showAttendance(int $sessionID, int $userID)
     {
         return response()->json(Attendance::where([['sessionID', '=', $sessionID], ['userID', '=', $userID]])->firstOrFail());
     }
@@ -31,7 +31,7 @@ class AttendanceController extends Controller
         return response()->json($attendance, 201);
     }
 
-    public function update($sessionID, $userID, Request $request)
+    public function update(int $sessionID, int $userID, Request $request)
     {
         $this->validate($request, [
             'userType' => 'required|integer',
@@ -43,9 +43,19 @@ class AttendanceController extends Controller
         return response()->json($attendance, 200);
     }
 
-    public function delete($sessionID, $userID)
+    public function delete(int $sessionID, int $userID)
     {
         Attendance::where([['sessionID', '=', $sessionID], ['userID', '=', $userID]])->firstOrFail()->delete();
         return response('Attendance Deleted Successfully', 200);
+    }
+
+    public function showAttendancesBySession(int $sessionID)
+    {
+        return response()->json(Attendance::where('sessionID', $sessionID)->get());
+    }
+
+    public function showAttendancesByUser(int $userID)
+    {
+        return response()->json(Attendance::where('userID', $userID)->get());
     }
 }

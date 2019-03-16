@@ -13,7 +13,7 @@ class EventController extends Controller
 		return response()->json(Event::all());
 	}
 
-	public function showEvent($eventID)
+	public function showEvent(int $eventID)
 	{
 		return response()->json(Event::findOrFail($eventID));
 	}
@@ -35,7 +35,7 @@ class EventController extends Controller
 		return response()->json($event, 201);
 	}
 
-	public function update($eventID, Request $request)
+	public function update(int $eventID, Request $request)
 	{
 		$this->validate($request, [
 			'eventName' => 'string|max:255',
@@ -52,9 +52,14 @@ class EventController extends Controller
 		return response()->json($event, 200);
 	}
 
-	public function delete($eventID)
+	public function delete(int $eventID)
 	{
 		Event::findOrFail($eventID)->delete();
 		return response('Event Deleted Successfully', 200);
+	}
+
+	public function showEventsByUser(int $userID)
+	{
+		return response()->json(Event::where('userID', $userID)->get());
 	}
 }
