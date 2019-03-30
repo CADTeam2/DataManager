@@ -91,9 +91,9 @@ class AttendanceController extends Controller
     /**
      * Return all attendances for a specific session.
      *
-     * @param int         $sessionID
+     * @param int        $sessionID
      *
-     * @return string     JSON
+     * @return string    JSON
      */
     public function showAttendancesBySession(int $sessionID)
     {
@@ -103,9 +103,9 @@ class AttendanceController extends Controller
     /**
      * Return all attendances for a specific user.
      *
-     * @param int         $userID
+     * @param int        $userID
      *
-     * @return string     JSON
+     * @return string    JSON
      */
     public function showAttendancesByUser(int $userID)
     {

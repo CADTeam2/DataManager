@@ -9,18 +9,38 @@ use Laravel\Lumen\Routing\Controller;
 
 class SessionController extends Controller
 {
+    /**
+     * Returns all sessions in the database.
+     *
+     * @return string    JSON
+     */
     public function showAllSessions()
     {
         return response()->json(Session::all());
     }
 
+    /**
+     * Returns a specific session.
+     *
+     * @param int        $sessionID
+     *
+     * @return string    JSON
+     */
     public function showSession(int $sessionID)
     {
         return response()->json(Session::findOrFail($sessionID));
     }
 
+    /**
+     * Create a new session.
+     *
+     * @param array      $request
+     *
+     * @return string    JSON
+     */
     public function create(Request $request)
     {
+        // Validate the user input to ensure safe data passed to the database.
         $this->validate($request, [
             'eventID'            => 'required|integer|exists:sessions,sessionID',
             'sessionName'        => 'required|string|max:255',
@@ -36,8 +56,17 @@ class SessionController extends Controller
         return response()->json($session, 201);
     }
 
+    /**
+     * Update an existing session.
+     *
+     * @param int        $sessionID
+     * @param array      $request
+     *
+     * @return string    JSON
+     */
     public function update(int $sessionID, Request $request)
     {
+        // Validate the user input to ensure safe data passed to the database.
         $this->validate($request, [
             'sessionName'        => 'string|max:255',
             'startTime'          => 'nullable|date',
@@ -53,12 +82,26 @@ class SessionController extends Controller
         return response()->json($session, 200);
     }
 
+    /**
+     * Delete a session.
+     *
+     * @param int         $sessionID
+     *
+     * @return respone    200
+     */
     public function delete(int $sessionID)
     {
         Session::findOrFail($sessionID)->delete();
         return response('Session Deleted Successfully', 200);
     }
 
+    /**
+     * Return all sessions attended by a specific user.
+     *
+     * @param int        $userID
+     *
+     * @return string    JSON
+     */
     public function showSessionsByUser(int $userID)
     {
         $attendances = Attendance::where('userID', $userID)->get();
@@ -66,6 +109,13 @@ class SessionController extends Controller
         return response()->json(Session::wherein('sessionID', $attendances->pluck('sessionID'))->get());
     }
 
+    /**
+     * Return all sessions at a specific event.
+     *
+     * @param int        $eventID
+     *
+     * @return string    JSON
+     */
     public function showSessionsByEvent(int $eventID)
     {
         return response()->json(Session::where('eventID', $eventID)->get());
