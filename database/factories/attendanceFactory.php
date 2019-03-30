@@ -18,19 +18,19 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(Attendance::class, function (Faker $faker) {
-	// Get a random and UserID and Session ID, integrity constraints handled in seeder.
+    // Get a random and UserID and Session ID, integrity constraints handled in seeder.
     $userID = $faker->numberBetween($min = 1, $max = User::count());
     $sessionID = $faker->numberBetween($min = 1, $max = Session::count());
     
     // Ensure only 1 in 15 random attendances are as a moderator
     $userType = $faker->numberBetween($min = 1, $max = 15);
     if ($userType !== 1) {
-    	$userType = 0;
+        $userType = 0;
     }
 
     return [
         'sessionID' => $sessionID,
-        'userID' 	=> $userID,
+        'userID'    => $userID,
         'userType'  => $userType,
     ];
 });
