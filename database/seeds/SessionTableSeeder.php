@@ -18,11 +18,11 @@ class SessionsTableSeeder extends Seeder
             // this won't cause integrity constraints. This will simply create
             // cross references where user 1 moderates session 1, user 2 moderates
             // session 2 etc.
-        	factory(Attendance::class)->create([
-        		'sessionID' => Attendance::count() + 1,
-        		'userID'    => Attendance::count() + 1,
-        		'userType'  => 1,
-    		]);
+            factory(Attendance::class)->create([
+                'sessionID' => Attendance::count() + 1,
+                'userID'    => Attendance::count() + 1,
+                'userType'  => 1,
+           ]);
         });
     }
 }
