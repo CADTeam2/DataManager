@@ -3,7 +3,7 @@
 This is the REST-API and Data Manager for Imbroglio Development, the second Collaborative Application Development group for
 for module 40038, part of the Keele University MSc in Advanced Computer Science.
 The API ensures that the web and mobile applications developed by the group don't interact directly with the database,
-ensuring consistency and security accross the applications. 
+ensuring consistency and security across the applications. 
 As the data management software for the group, it also manages database migrations and seeding.
 
 Questions about this code should be directed to Github user: NathanABrooks
