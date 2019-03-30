@@ -8,6 +8,13 @@ As the data management software for the group, it also manages database migratio
 
 Questions about this code should be directed to Github user: NathanABrooks
 
+## IMPORTANT
+
+This project has two main branches, 'master' and 'Live'.
+All editing and improvements should be merged to the 'master' branch as with most git projects.
+The Live branch has had all unused framework defaults removed, and is used on the live project server,
+it should therefore only be edited by merging 'master' into it after major changes or urgent hotfixes.
+
 This project was developed using the Lumen PHP framework.
 
 # Lumen PHP Framework
