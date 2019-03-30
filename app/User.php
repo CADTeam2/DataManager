@@ -51,7 +51,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        // The password, while normally hidden, is visable to allow a quick and dirty
+        // login system placeholder.
+        // 'password',
     ];
 
     /**
